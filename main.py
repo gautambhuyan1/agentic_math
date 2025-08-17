@@ -34,12 +34,6 @@ llm_with_tools = llm.bind_tools(tools)
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
-def addNums(state: State) -> State:
-    print("AddNum Called with ", state)
-    state["result"] = state["numA"] + state["numB"]
-    print("Calculated state ", state)
-    return state
-
 def chatbot(state: State):
     return {"messages": [llm_with_tools.invoke(state["messages"])]}
 
